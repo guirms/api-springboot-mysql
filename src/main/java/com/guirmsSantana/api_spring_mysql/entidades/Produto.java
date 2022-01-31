@@ -10,6 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Produto implements Serializable {
@@ -24,6 +27,9 @@ public class Produto implements Serializable {
 
 	@ManyToMany
 	private Set<Categoria> categoria = new HashSet<>();
+
+	@OneToMany(mappedBy = "itemPK.pedido")
+	private Set<ItemPedido> itens = new HashSet<>();
 
 	public Produto() {
 	}
@@ -65,6 +71,15 @@ public class Produto implements Serializable {
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
+	}
+
+	@JsonIgnore
+	public Set<Pedido> getPedidos(){
+		Set<Pedido> set = new HashSet<>();
+		for (ItemPedido x : itens) {
+			set.add(x.getPedido());
+		}
+		return set;
 	}
 
 	@Override

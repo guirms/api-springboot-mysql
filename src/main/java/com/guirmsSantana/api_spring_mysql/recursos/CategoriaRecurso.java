@@ -22,13 +22,13 @@ public class CategoriaRecurso{
 	@GetMapping
 	public ResponseEntity<List<Categoria>> encontrarTudo(){
 		List<Categoria> lista = categoriaServ.encontrarTudo();
-		return ResponseEntity.ok().body(lista);
+		return ResponseEntity.ok(lista);
 	}
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Categoria> encontrarPorId(@PathVariable Long id){
 		Categoria cat = categoriaServ.encontrarPorId(id);
-		return ResponseEntity.ok().body(cat);
+		return ResponseEntity.ok(cat);
 	}
 	
 
