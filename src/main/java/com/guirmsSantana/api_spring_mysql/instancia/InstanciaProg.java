@@ -19,7 +19,7 @@ import com.guirmsSantana.api_spring_mysql.repositorios.PedidoRepositorio;
 import com.guirmsSantana.api_spring_mysql.repositorios.ProdutoRepositorio;
 
 @Configuration
-@Profile("test")
+@Profile("dev")
 public class InstanciaProg implements CommandLineRunner{
 
 	@Autowired
